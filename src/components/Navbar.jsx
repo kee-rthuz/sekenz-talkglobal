@@ -19,7 +19,7 @@ const Navbar = () => {
       <img className="h-20 w-auto md:h-32 lg:h-40" src={BgTexture} alt="Logo" />    
     </div>
 
-  <div className='bg-white h-[95px] w-full rounded-[25px] rounded-t rounded-r -mt-12 -mr-8 hidden md:flex md:items-center md:space-x-4 ml-20 -mr-8 lg:space-x-8 mt-2'>
+  <div className='bg-white h-[95px] w-full rounded-[25px] rounded-t rounded-r -mt-14 -mr-8 hidden md:flex md:items-center md:space-x-4 ml-20 -mr-8 lg:space-x-8 mt-2'>
     <div className="hidden md:flex md:items-center md:space-x-4 lg:space-x-20 ml-4 mt-4">
       <Link to="" className="text-gray-900 hover:text-purple-600 px-3 py-2 text-sm font-medium">Home</Link>
       <Link to="countries" className="text-gray-500 hover:text-purple-600 px-3 py-2 text-sm font-medium">Countries</Link>

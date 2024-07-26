@@ -140,7 +140,7 @@ function Home() {
 
 
 
-          <div className="flex flex-col lg:flex-row justify-between">
+          {/* <div className="flex flex-col lg:flex-row justify-between">
             <div className="text-left bg-white p-4 sm:p-10 max-w-4xl w-full mb-8 lg:mb-0">
               <h2 className="text-3xl sm:text-4xl font-bold mb-4">Talks Global can help you</h2>
               <p className="mb-4 text-lg sm:text-xl">
@@ -203,10 +203,10 @@ function Home() {
                 <button className="bg-amber-500 text-white py-3 px-10 sm:px-20 rounded-full w-full sm:w-auto">Submit</button>
               </form>
             </div>
-            <div className="mt-8 lg:mt-0 lg:ml-8 mb-6 lg:mb-0"> {/* Updated this line */}
+            <div className="mt-8 lg:mt-0 lg:ml-8 mb-6 lg:mb-0"> 
           <img src={formImage} alt="" className="object-cover rounded-lg w-full max-w-[440px] h-[510px]" />
         </div>
-          </div>
+          </div> */}
         {/* </div> */}
       </main>
     </div>

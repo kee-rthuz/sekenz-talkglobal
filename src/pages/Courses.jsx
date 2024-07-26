@@ -177,7 +177,7 @@ function Courses() {
 
 
 
-    <div className="min-h-screen  flex flex-col lg:flex-row justify-between p-6 sm:p-12">
+    {/* <div className="min-h-screen  flex flex-col lg:flex-row justify-between p-6 sm:p-12">
       <div className="text-left  max-w-4xl w-full mt-16">
         <h2 className="text-4xl font-bold mb-6">Talks Global can help you</h2>
         <p className="mb-8 text-xl">
@@ -244,7 +244,7 @@ function Courses() {
       <div className="mt-8 lg:mt-0 lg:ml-8">
         <img src={formImage} alt="" className="object-cover rounded-lg w-full max-w-[440px] h-[510px]" />
       </div>
-    </div>
+    </div> */}
 
 
 

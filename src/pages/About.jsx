@@ -78,7 +78,7 @@ const AboutPage = () => {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row justify-between">
+      {/* <div className="flex flex-col lg:flex-row justify-between">
             <div className="text-left bg-white p-4 sm:p-10 max-w-4xl w-full mb-8 lg:mb-0">
               <h2 className="text-3xl sm:text-4xl font-bold mb-4">Talks Global can help you</h2>
               <p className="mb-4 text-lg sm:text-xl">
@@ -152,7 +152,7 @@ const AboutPage = () => {
             </div>
          </div>
 
-      </div>
+      </div> */}
     </div>
   );
 };
