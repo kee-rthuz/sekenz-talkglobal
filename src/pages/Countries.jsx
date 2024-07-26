@@ -27,13 +27,13 @@ function Countries() {
       </div>
 
       <div>
-        <div className="grid lg:grid-cols-3 gap-5 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
           {['Germany', 'Serbia', 'UK'].map((country, index) => (
-            <div key={country} className="relative flex flex-col items-center sm:mb-0">
+            <div key={country} className="relative flex flex-col items-center mb-5 sm:mb-0">
               <img 
                 src={[germanyImage, serbiaImage, ukImage][index]} 
                 alt={country} 
-                className="sm:h-80 w-full md:w-2/3 object-cover rounded-3xl"
+                className="h-64 sm:h-80 w-full object-cover rounded-3xl"
               />
               <h3 className="absolute top-4 text-xl sm:text-2xl font-semibold text-white bg-opacity-50 px-4 py-2 rounded">
                 {country}
@@ -43,36 +43,23 @@ function Countries() {
         </div>
 
         <div className="flex flex-col lg:flex-row items-center justify-between mt-12 mb-24">
-                <div className="lg:w-1/2 mb-8 lg:mb-0 relative">
-                  <img
-                    src={canadaImage}
-                    alt="Canada"
-                    className="sm:h-80 md:ml-20 md:w-[320px] md:w-2/3  rounded-3xl"
-                  />
-                  <h3 className='ml-20'
-                    style={{
-                      position: 'absolute',
-                      top: '10%',
-                      left: '17%',
-                      
-                      fontSize: '1.25rem', // Adjust as needed
-                      fontWeight: '600',
-                      color: 'white',
-                      
-                    }}
-                  >
-                    Canada
-                  </h3>
-                </div>
+          <div className="w-full lg:w-1/2 mb-8 lg:mb-0 relative">
+            <img
+              src={canadaImage}
+              alt="Canada"
+              className="h-64 sm:h-80 w-full lg:w-2/3 object-cover rounded-3xl mx-auto lg:ml-20"
+            />
+            <h3 className="absolute top-4 left-4 lg:left-24 text-xl sm:text-2xl font-semibold text-white bg-opacity-50 px-4 py-2 rounded">
+              Canada
+            </h3>
+          </div>
 
-                    <div className="w-full lg:w-1/2 px-4 lg:px-0 text-center lg:text-left mb-8 lg:mb-0">
-                      <p className="text-3xl md:text-4xl lg:text-5xl font-bold italic text-black" style={{ fontFamily: 'Risque' }}>
-                        Begin an exciting academic journey in these varied and welcoming study locations!
-                      </p>
-                    </div>
-            </div>
-
-
+          <div className="w-full lg:w-1/2 px-4 lg:px-0 text-center lg:text-left mb-8 lg:mb-0">
+            <p className="text-3xl md:text-4xl lg:text-5xl font-bold italic text-black" style={{ fontFamily: 'Risque' }}>
+              Begin an exciting academic journey in these varied and welcoming study locations!
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="flex flex-col lg:flex-row justify-between">
@@ -139,8 +126,8 @@ function Countries() {
           </form>
         </div>
 
-        <div className="mt-8 lg:mt-0 lg:ml-8 mb-6 lg:mb-0 -mr-36">
-          <img src={formImage} alt="" className="object-cover  rounded-lg w-full max-w-[440px] h-[510px]" />
+        <div className="mt-8 lg:mt-0 lg:ml-8 mb-6 lg:mb-0">
+          <img src={formImage} alt="" className="object-cover rounded-lg w-full max-w-[440px] h-[510px] mx-auto lg:mx-0" />
         </div>
       </div>
     </div>
