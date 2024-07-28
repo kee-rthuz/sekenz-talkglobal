@@ -12,8 +12,9 @@ export const ContactForm = () => {
     studyTime: '',
     studyLevel: '',
     funding: '',
-    agreeTerms: false
+    agreeTerms: false,
   });
+
   const [error, setError] = useState('');
   const [validationErrors, setValidationErrors] = useState({});
 
@@ -21,16 +22,28 @@ export const ContactForm = () => {
     const { id, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [id]: type === 'checkbox' ? checked : value
+      [id]: type === 'checkbox' ? checked : value,
     }));
   };
 
   const validateForm = () => {
     const errors = {};
+
     if (!formData.firstName) errors.firstName = 'First Name is required.';
     if (!formData.lastName) errors.lastName = 'Last Name is required.';
-    if (!formData.email) errors.email = 'Email is required.';
-    if (!formData.phone) errors.phone = 'Phone number is required.';
+    if (!formData.email) {
+      errors.email = 'Email is required.';
+    } else if (!formData.email.includes('@')) {
+      errors.email = 'Email must include "@" symbol.';
+    }
+
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!formData.phone) {
+      errors.phone = 'Phone number is required.';
+    } else if (!phoneRegex.test(formData.phone)) {
+      errors.phone = 'Phone number must be exactly 10 digits.';
+    }
+
     if (!formData.agreeTerms) errors.agreeTerms = 'You must agree to the terms and conditions.';
 
     setValidationErrors(errors);
@@ -42,23 +55,37 @@ export const ContactForm = () => {
 
     if (!validateForm()) return;
 
-    setError('');
     try {
-      await handleSubmit(e, formData, setError);
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        destination: '',
-        studyTime: '',
-        studyLevel: '',
-        funding: '',
-        agreeTerms: false
-      });
-      alert('Thanks for contacting us, we will be in touch with you soon');
+      const response = await handleSubmit(e, formData, setError);
+
+      // Log the response to see what is coming from the server
+      console.log('Response from server:', response);
+
+      // Check for response status and handle accordingly
+      if (response.status === 'verification_sent') {
+        alert('A verification email has been sent to your email address. Please check your inbox to confirm your email address.');
+      } else if (response.status === 'email_sent') {
+        alert('Thanks for contacting us, we will be in touch with you soon.');
+        // Reset the form only if email is sent successfully
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          destination: '',
+          studyTime: '',
+          studyLevel: '',
+          funding: '',
+          agreeTerms: false,
+        });
+      } else if (response.status === 'error') {
+        alert(`An error occurred: ${response.message}`);
+      } else {
+        alert('Unexpected response received. Please try again later.');
+      }
     } catch (error) {
       console.error('Submission error:', error);
+      alert('An error occurred while submitting the form. Please try again.');
     }
   };
 
@@ -154,30 +181,27 @@ const Contact = () => {
               <p className="mb-6 text-lg">
                 Our team is here to help! Whether you need more information or have specific questions, feel free to reach out to us anytime.
               </p>
-              <div className="space-y-4 p-4">
+              <div className="space-y-4">
                 <div className="flex items-start">
                   <div className="flex-shrink-0 w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3">
-                    <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 16v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4m18 0l-2.5-2.5m2.5 2.5L18 21M12 6V4m0 2a4 4 0 00-4 4m8-4a4 4 0 00-4 4m0-4a4 4 0 014 4m-4-4a4 4 0 014-4m-4 4a4 4 0 00-4 4m8 0a4 4 0 00-4 4"></path>
                     </svg>
                   </div>
                   <div>
-                    <span className="text-purple-600 font-semibold">Location</span>
-                    <p className="text-gray-700">kerala, india</p>
+                    <h4 className="text-lg font-semibold">Need Assistance?</h4>
+                    <p className="text-gray-600">We're here to help. Get in touch with our expert team for personalized assistance.</p>
                   </div>
                 </div>
-                
                 <div className="flex items-start">
                   <div className="flex-shrink-0 w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3">
-                    <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h.01M7 10h.01M11 10h.01M15 10h.01M19 10h.01M23 10h.01M23 6h-2M17 6h-4m0 0H7M5 6H3m0 4h18M3 14h18m-6 4H9m0 0H7m0 0H3m6 0h2m0 0h2m0 0h2m0 0h2m0 0h4"></path>
                     </svg>
                   </div>
                   <div>
-                    <span className="text-purple-600 font-semibold">Quick Contact</span>
-                    <p className="text-gray-700">Phone: +91 1234567890</p>
-                    <p className="text-gray-700">E-mail: talksglobal@gmail.com</p>
+                    <h4 className="text-lg font-semibold">Customer Support</h4>
+                    <p className="text-gray-600">Reach out to our support team for any queries or assistance.</p>
                   </div>
                 </div>
               </div>
